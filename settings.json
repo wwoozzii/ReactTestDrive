@@ -1,0 +1,171 @@
+{
+  // --- 0 тема ------
+  "workbench.colorCustomizations": {
+    // Тонкие серые линии для всех уровней (0.1 — это прозрачность, чтобы были как ниточки)
+    "editorIndentGuide.background1": "#3b3b3b33",
+    "editorIndentGuide.background2": "#3b3b3b33",
+    "editorIndentGuide.background3": "#3b3b3b33",
+    "editorIndentGuide.background4": "#3b3b3b33",
+    "editorIndentGuide.activeBackground1": "#61afef", // Подсветка активной линии
+    "editorIndentGuide.activeBackground2": "#61afef",
+    //
+
+    // "editor.background": "#090b0f",
+    // "editor.foreground": "#cfcfcf",
+    // "editor.lineHighlightBackground": "#141020",
+    // "editorCursor.foreground": "#C792EA",
+    // "editor.selectionBackground": "#ff00ea3f",
+
+    "sideBar.background": "#090b0f",
+    "sideBar.foreground": "#6d6d74",
+    "sideBar.border": "#1A1625",
+    "sideBarTitle.foreground": "#c2c2c2",
+    "sideBarSectionHeader.background": "#090b0f",
+    "sideBarSectionHeader.foreground": "#a6a8a8",
+
+    // "editorGroupHeader.tabsBackground": "#0C0912",
+    // "tab.activeBackground": "#141020",
+    // "tab.inactiveBackground": "#0C0912",
+    // "tab.activeForeground": "#FFFFFF",
+    // "tab.inactiveForeground": "#777777",
+    // "tab.border": "#1A1625",
+
+    "activityBar.background": "#090b0f",
+    "activityBar.foreground": "#c582f1",
+    "activityBar.inactiveForeground": "#6C6C80",
+    "activityBar.border": "#1A1625",
+
+    "statusBar.background": "#090b0f",
+    "statusBar.foreground": "#C8C8D0",
+    "statusBar.border": "#1A1625",
+  },
+  "editor.tokenColorCustomizations": {
+    "comments": "#6a6a6a",
+    "keywords": "#d09fe7",
+    "strings": "#9ece6a",
+    "functions": "#c678dd",
+
+    "textMateRules": [
+      {
+        "scope": ["variable.parameter", "variable.other.readwrite"],
+        "settings": {
+          "foreground": "#6a80e0",
+        },
+      },
+    ],
+
+    // "textMateRules": [
+    //   {
+    //     "name": "Keywords (export, const, if)",
+    //     "scope": [
+    //       "keyword",
+    //       "keyword.control",
+    //       "storage.type",
+    //       "storage.modifier",
+    //     ],
+    //     "settings": {
+    //       "foreground": "#c79fe2",
+    //     },
+    //   },
+
+    //   {
+    //     "name": "Variables (count, newModule)",
+    //     "scope": ["variable", "variable.other.readwrite", "variable.parameter"],
+    //     "settings": {
+    //       "foreground": "#7062ee",
+    //     },
+    //   },
+
+    //   {
+    //     "name": "Functions (accept, log)",
+    //     "scope": [
+    //       "entity.name.function",
+    //       "support.function",
+    //       "meta.function-call",
+    //     ],
+    //     "settings": {
+    //       "foreground": "#aa64eb",
+    //     },
+    //   },
+
+    //   {
+    //     "name": "Strings ('updated: count is now')",
+    //     "scope": ["string", "string.quoted", "string.template"],
+    //     "settings": {
+    //       "foreground": "#6270bd",
+    //     },
+    //   },
+
+    //   {
+    //     "name": "Numbers (1)",
+    //     "scope": ["constant.numeric"],
+    //     "settings": {
+    //       "foreground": "#536aee",
+    //     },
+    //   },
+
+    //   {
+    //     "name": "Comments",
+    //     "scope": ["comment", "comment.line", "comment.block"],
+    //     "settings": {
+    //       "foreground": "#5C6370",
+    //       "fontStyle": "italic",
+    //     },
+    //   },
+
+    //   {
+    //     "name": "Punctuation (=>, {}, (), .)",
+    //     "scope": ["punctuation", "meta.brace", "meta.delimiter"],
+    //     "settings": {
+    //       "foreground": "#ebe5e5",
+    //     },
+    //   },
+    // ],
+  },
+
+  "workbench.colorTheme": "Ayu Tokyo Night",
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "breadcrumbs.enabled": true,
+  // --- 1. ПОДСКАЗКИ: СЛОВА ВКЛЮЧАЕМ, ИИ ВЫКЛЮЧАЕМ ---
+  "editor.quickSuggestions": {
+    "other": true, // Возвращает подсказки слов (useState, div и т.д.)
+    "comments": false,
+    "strings": true,
+  },
+  "editor.suggestOnTriggerCharacters": true, // реакция на /
+  "editor.inlineSuggest.enabled": false, // УБИРАЕТ серые ИИ-строки (Copilot/IntelliCode)
+  "editor.suggest.preview": false, // Убирает предпросмотр кода внутри строки
+  // --- 2. ЛИНИИ ОТСТУПОВ (Тонкие и исправленные) ---
+  "editor.guides.indentation": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.bracketPairColorization.enabled": true,
+
+  // --- 3. ФОРМАТИРОВАНИЕ И ЛОГИКА ---
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.detectIndentation": false,
+  "editor.insertSpaces": false, // Использовать табы (как у тебя и было)
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit",
+    "source.fixAll": "explicit",
+    "source.fixAll.eslint": "explicit",
+  },
+  // --- 4. ОСТАЛЬНОЙ МУСОР (Чистка) ---
+  "window.zoomLevel": 0,
+  "editor.fontLigatures": true,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.CustomBrowser": "vivaldi",
+  "console-ninja.featureSet": "Community",
+  "terminal.integrated.fontFamily": "monospace",
+  "workbench.editor.empty.hint": "hidden",
+  "editor.linkedEditing": true,
+
+  //
+
+  "explorer.compactFolders": false,
+  "explorer.folders.expandSingleChildExpander": false,
+}
