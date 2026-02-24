@@ -41,9 +41,15 @@ export function TaskItem({ task, onDelete, onToggle, onSave }) {
             {task.name}
           </span>
 
-          <button onClick={() => setIsEditing(true)}>✏️ Edit</button>
-          <button onClick={() => onToggle(task.id)}>✔️ Done</button>
-          <button onClick={() => onDelete(task.id)}>🗑️ Delete</button>
+          <button
+            onClick={() => {
+              (setEditInput(task.name), setIsEditing(true));
+            }}
+          >
+            Edit
+          </button>
+          <button onClick={() => onToggle(task.id)}> Done</button>
+          <button onClick={() => onDelete(task.id)}> Delete</button>
         </>
       )}
     </div>
