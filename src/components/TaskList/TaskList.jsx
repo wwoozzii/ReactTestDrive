@@ -1,4 +1,4 @@
-import { TaskItem } from "./taskItem";
+import { TaskItem } from "../";
 
 export const TaskList = ({ tasks, onDelete, onToggle, onSave }) => {
   return (

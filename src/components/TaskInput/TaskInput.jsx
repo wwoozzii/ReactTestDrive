@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 
 export const TaskInput = ({ onAdd }) => {
   const [inputTasks, setInputTask] = useState("");
+  
   const inputRef = useRef();
 
   const handleAddEnter = (e) => {
