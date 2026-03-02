@@ -1,0 +1,65 @@
+@use "../../styles/variabless" as v;
+@use "../../styles/mixins" as m;
+
+.itemCard {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+
+  background: rgb(46, 46, 46);
+  border-radius: 5px;
+  padding: 10px;
+
+  &.completed {
+    // text-decoration: line-through;
+    background-color: rgba(5, 247, 5, 0.068);
+  }
+  &.activtask {
+    background-color: rgba(255, 0, 0, 0.144);
+  }
+
+  span {
+    flex: 1;
+    margin-right: 15px;
+    margin: 10px;
+    cursor: pointer;
+    color: white;
+  }
+
+  button {
+    @include m.base-button;
+    margin-left: 10px;
+    &:hover {
+      color: rgba(255, 255, 255, 0.918);
+    }
+    &:active {
+      box-shadow: 0 0px 17px rgba(255, 240, 213, 0.349);
+
+      transition: all 0.2s ease;
+    }
+  }
+
+  input {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background: v.$but-color;
+    padding: 7px 10px;
+    line-height: 1.5;
+    border-radius: v.$main-radius;
+    margin-left: 6px;
+    &:focus {
+      outline: none;
+      background-color: v.$but-hover-color;
+      color: white;
+    }
+    &:hover {
+      background: v.$but-hover-color;
+    }
+    &::placeholder {
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.685);
+      opacity: 1;
+    }
+  }
+}

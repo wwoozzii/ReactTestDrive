@@ -1,15 +1,20 @@
+import cn from "classnames";
+import s from "./TaskFilter.module.scss";
+
 export function TaskFilter({ currentCategory, onCategoryChange }) {
   const categories = ["all", "active", "completed"];
 
   return (
-    <div className="filter-buttons">
-      {categories.map((categories) => (
+    <div className={s.filterContainer}>
+      {categories.map((cat) => (
         <button
-          key={categories}
-          onClick={() => onCategoryChange(categories)}
-          //   className={currentCategory === cat ? "btn active" : "btn"}
+          className={cn(s.button, {
+            [s.completed]: currentCategory === cat,
+          })}
+          key={cat}
+          onClick={() => onCategoryChange(cat)}
         >
-          {categories}
+          {cat}
         </button>
       ))}
     </div>

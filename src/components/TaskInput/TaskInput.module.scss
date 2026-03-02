@@ -1,0 +1,68 @@
+@use "../../styles/variabless" as v;
+@use "../../styles/mixins" as m;
+
+.InputContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: left;
+
+  input {
+    flex: 1;
+    min-width: 280px;
+    width: 100%;
+    margin-left: 0;
+
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background: v.$but-color;
+    padding: 7px 10px;
+    line-height: 1.5;
+
+    width: 100%;
+    max-width: 700px;
+
+    border-radius: v.$main-radius;
+    // margin-left: 6px;
+    &:focus {
+      outline: none;
+      background-color: v.$but-hover-color;
+      color: white;
+    }
+    &:hover {
+      background: v.$but-hover-color;
+    }
+    &::placeholder {
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.685);
+      opacity: 1;
+    }
+  }
+
+  button {
+    flex-grow: 1;
+    @include m.tablet {
+      flex-grow: 0;
+    }
+
+    border: none;
+    margin-left: 8px;
+    padding: 12px 15px;
+    background-color: v.$but-color;
+    border-radius: v.$main-radius;
+    &:hover {
+      background: v.$but-hover-color;
+      color: rgba(255, 255, 255, 0.918);
+      transform: scale(1.05);
+      transition: all 0.3s ease;
+    }
+    &:active {
+      transform: scale(0.95);
+      transform: translate(0, 3px);
+      transition: all 0.2s ease;
+      //тень
+      box-shadow: 0 0px 17px rgba(255, 240, 213, 0.349);
+    }
+  }
+}

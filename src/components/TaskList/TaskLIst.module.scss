@@ -1,0 +1,12 @@
+@use "../../styles/variabless" as v;
+@use "../../styles/mixins" as m;
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 7px 10px;
+
+  width: 100%;
+  max-width: 700px;
+}

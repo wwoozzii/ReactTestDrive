@@ -1,0 +1,30 @@
+@use "variabless" as v;
+@mixin tablet {
+  @media (min-width: #{v.$break-tablet}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{v.$break-desktop}) {
+    @content;
+  }
+}
+
+@mixin base-button {
+  border: none;
+  padding: 12px 15px;
+  background-color: v.$but-color;
+  border-radius: v.$main-radius;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    background: v.$but-hover-color;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95) translateY(3px);
+  }
+  @content;
+}
