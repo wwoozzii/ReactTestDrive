@@ -1,8 +1,9 @@
 import { TaskItem } from "../";
+import s from "./TaskList.module.scss";
 
 export const TaskList = ({ tasks, onDelete, onToggle, onSave }) => {
   return (
-    <div className="task-list">
+    <div className={s.listContainer}>
       {tasks.map((item) => (
         <TaskItem
           key={item.id}

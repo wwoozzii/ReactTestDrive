@@ -1,4 +1,6 @@
+import cn from "classnames";
 import { useState } from "react";
+import s from "./TaskItem.module.scss";
 
 export function TaskItem({ task, onDelete, onToggle, onSave }) {
   const [editInput, setEditInput] = useState("");
@@ -15,7 +17,12 @@ export function TaskItem({ task, onDelete, onToggle, onSave }) {
   };
 
   return (
-    <div className={`task-item ${task.completed ? "completed" : ""}`}>
+    <div
+      className={cn(s.itemCard, {
+        [s.completed]: task.completed,
+        [s.activtask]: !task.completed,
+      })}
+    >
       {isEditing ? (
         // -------- режим редактора
         <>
@@ -31,15 +38,7 @@ export function TaskItem({ task, onDelete, onToggle, onSave }) {
       ) : (
         // -------- стандартный режим
         <>
-          <span
-            onClick={() => onToggle(task.id)}
-            style={{
-              cursor: "pointer",
-              textDecoration: task.completed ? "line-through" : "none",
-            }}
-          >
-            {task.name}
-          </span>
+          <span onClick={() => onToggle(task.id)}>{task.name}</span>
 
           <button
             onClick={() => {

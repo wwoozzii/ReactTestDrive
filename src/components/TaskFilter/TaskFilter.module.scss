@@ -1,0 +1,46 @@
+@use "../../styles/variabless" as v;
+@use "../../styles/mixins" as m;
+
+.filterContainer {
+  display: flex;
+  overflow-x: auto;
+  padding-bottom: 5px;
+  gap: 8px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  padding-top: 9px;
+
+  button {
+    white-space: nowrap;
+    flex-shrink: 0;
+
+    border: none;
+    padding: 13px 15px;
+    margin: 0 10px 0 0;
+    background-color: v.$but-color;
+    border-radius: v.$main-radius;
+    &:hover {
+      background: v.$but-hover-color;
+      color: rgba(255, 255, 255, 0.918);
+      transform: scale(1.05);
+      transition: all 0.3s ease;
+    }
+    &:active {
+      transform: scale(0.95);
+      transform: translate(0, 3px);
+      transition: all 0.2s ease;
+      //тень
+      //   box-shadow: 0 0px 17px rgba(255, 240, 213, 0.349);
+    }
+    &.completed {
+      //   background-color: v.$but-hover-color;
+      color: rgba(255, 255, 255, 0.918);
+      box-shadow: 0 2.7px 0px rgb(255, 255, 255);
+    }
+  }
+}

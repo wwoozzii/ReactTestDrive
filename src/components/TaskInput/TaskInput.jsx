@@ -1,8 +1,9 @@
 import { useRef, useState } from "react";
+import s from "./TaskInput.module.scss";
 
 export const TaskInput = ({ onAdd }) => {
   const [inputTasks, setInputTask] = useState("");
-  
+
   const inputRef = useRef();
 
   const handleAddEnter = (e) => {
@@ -21,13 +22,13 @@ export const TaskInput = ({ onAdd }) => {
   };
 
   return (
-    <>
-      {/*добавление задачи */}
+    <div className={s.InputContainer}>
       <input
         type="text"
         ref={inputRef}
         value={inputTasks}
         onKeyDown={handleAddEnter}
+        placeholder="New task..."
         onChange={(e) => setInputTask(e.target.value)}
       ></input>
       <button
@@ -38,6 +39,6 @@ export const TaskInput = ({ onAdd }) => {
       >
         add
       </button>
-    </>
+    </div>
   );
 };
