@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import "./App.css";
 //src/App.jsx
-import { TaskFilter, TaskInput, TaskList } from "./components";
+import { TaskCount, TaskFilter, TaskInput, TaskList } from "./components";
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -51,6 +51,7 @@ function App() {
     <div className="app">
       <TaskInput onAdd={addTask} />
       <TaskFilter currentCategory={category} onCategoryChange={setCategory} />
+      <TaskCount tasks={filteredTasks} />
       <TaskList
         tasks={filteredTasks}
         onDelete={deleteTask}
