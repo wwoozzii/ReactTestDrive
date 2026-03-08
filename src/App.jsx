@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import "./App.css";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 //src/App.jsx
 import {
 	TaskCount,
@@ -10,7 +11,7 @@ import {
 } from "./components";
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useLocalStorage("", []);
   const [searchTask, setSearchTask] = useState("");
 
   const addTask = (readyAddText) => {
@@ -39,10 +40,11 @@ function App() {
 
   const filteredTasks = useMemo(() => {
     if (!tasks) return [];
-
+    const safeTasks = Array.isArray(tasks) ? tasks : [];
     const safeSearch = (searchTask || "").toLowerCase();
 
-    return tasks.filter((task) => {
+    return safeTasks.filter((task) => {
+      if (!task) return false;
       const safeTitle = (task.name || "").toLowerCase();
 
       const matchesSearch = safeTitle.includes(safeSearch);
