@@ -1,7 +1,7 @@
 import { TaskItem } from "../";
 import s from "./TaskList.module.scss";
 
-export const TaskList = ({ tasks, onDelete, onToggle, onSave }) => {
+export function TaskList({ tasks, onDelete, onToggle, onSave }) {
   return (
     <div className={s.listContainer}>
       {tasks.map((item) => (
@@ -15,4 +15,4 @@ export const TaskList = ({ tasks, onDelete, onToggle, onSave }) => {
       ))}
     </div>
   );
-};
+}

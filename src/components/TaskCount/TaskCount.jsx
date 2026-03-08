@@ -12,10 +12,8 @@ export function TaskCount({ tasks = [] }) {
   return (
     <div className={s.countContainer}>
       <p>
-        Выполнено: <span className={s.highlight}>{completedCount}</span> из{" "}
-        {total}
+        Выполнено: <span className={s.highlight}>{completedCount}</span> из{" "}{total}
       </p>
-      {/* Маленький бонус: полоска прогресса */}
       <div className={s.progressBar}>
         <div
           className={s.progressFill}
