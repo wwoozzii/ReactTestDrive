@@ -1,11 +1,17 @@
 import { useMemo, useState } from "react";
 import "./App.css";
 //src/App.jsx
-import { TaskCount, TaskFilter, TaskInput, TaskList } from "./components";
+import {
+	TaskCount,
+	TaskFilter,
+	TaskInput,
+	TaskList,
+	TaskSearch,
+} from "./components";
 
 function App() {
   const [tasks, setTasks] = useState([]);
-  const [category, setCategory] = useState("all"); // 'all', 'active', 'completed'
+  const [searchTask, setSearchTask] = useState("");
 
   const addTask = (readyAddText) => {
     setTasks((prev) => [
@@ -29,29 +35,44 @@ function App() {
       ),
     );
   };
+  const [category, setCategory] = useState("all");
 
   const filteredTasks = useMemo(() => {
+    if (!tasks) return [];
+
+    const safeSearch = (searchTask || "").toLowerCase();
+
     return tasks.filter((task) => {
+      const safeTitle = (task.name || "").toLowerCase();
+
+      const matchesSearch = safeTitle.includes(safeSearch);
+      if (!matchesSearch) return false;
+
       if (category === "active") return !task.completed;
       if (category === "completed") return task.completed;
       return true; //all
     });
-  }, [tasks, category]);
+  }, [tasks, category, searchTask]);
 
-  function onToggle(id) {
+  const onToggle = (id) => {
     setTasks(
       tasks.map((task) =>
         task.id === id ? { ...task, completed: !task.completed } : task,
       ),
     );
-    console.log("completed");
-  }
+  };
+
+  const onSearch = (searchText) => {
+    setSearchTask(searchText);
+  };
 
   return (
     <div className="app">
       <TaskInput onAdd={addTask} />
       <TaskFilter currentCategory={category} onCategoryChange={setCategory} />
+
       <TaskCount tasks={filteredTasks} />
+      <TaskSearch onSearch={onSearch} />
       <TaskList
         tasks={filteredTasks}
         onDelete={deleteTask}
