@@ -1,17 +1,20 @@
 import { useState } from "react";
 
-export function TaskSearch({ onSearch }) {
+interface Props {
+  onSearch: (text: string) => void;
+}
+
+export function TaskSearch({ onSearch }: Props) {
   const [inputSearch, setInputSearch] = useState("");
 
-  const handleSearchEnter = (e) => {
+  const handleSearchEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       handleSearchClick();
     }
   };
 
   const handleSearchClick = () => {
-    const searchText = inputSearch.trim();
-    onSearch(searchText);
+    onSearch(inputSearch.trim());
   };
 
   const handleResetClick = () => {
@@ -27,9 +30,9 @@ export function TaskSearch({ onSearch }) {
         onKeyDown={handleSearchEnter}
         placeholder="Search..."
         onChange={(e) => setInputSearch(e.target.value)}
-      ></input>
-      <button onClick={(e) => handleSearchClick()}>Search</button>
-      <button onClick={(e) => handleResetClick()}>Reset</button>
+      />
+      <button onClick={handleSearchClick}>Search</button>
+      <button onClick={handleResetClick}>Reset</button>
     </div>
   );
 }

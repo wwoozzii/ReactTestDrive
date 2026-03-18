@@ -1,6 +1,6 @@
 // src/components/TaskLoad/TaskLoadButton.jsx
 import { useState } from "react";
-import { TaskLoading } from "./TaskLoading";
+import { TaskLoading } from "./TaskLoading.js";
 
 export function TaskLoadButton() {
   const [showLoader, setShowLoader] = useState(false);

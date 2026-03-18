@@ -1,15 +1,21 @@
 import cn from "classnames";
 import s from "./TaskFilter.module.scss";
 
-export function TaskFilter({ currentCategory, onCategoryChange }) {
-  const categories = ["all", "active", "completed"];
+type Category = "all" | "active" | "completed";
+interface Props {
+  currentCategory: Category;
+  onCategoryChange: (category: Category) => void;
+}
+
+export function TaskFilter({ currentCategory, onCategoryChange }: Props) {
+  const categories: Category[] = ["all", "active", "completed"];
 
   return (
     <div className={s.filterContainer}>
       {categories.map((cat) => (
         <button
           className={cn(s.button, {
-            [s.completed]: currentCategory === cat,
+            [s.completed as string]: currentCategory === cat,
           })}
           key={cat}
           onClick={() => onCategoryChange(cat)}

@@ -1,12 +1,17 @@
 import { useRef, useState } from "react";
+import type { TextAction } from "../../types/index.js";
 import s from "./TaskInput.module.scss";
 
-export const TaskInput = ({ onAdd }) => {
+interface Props {
+  onAdd: TextAction;
+}
+
+export const TaskInput = ({ onAdd }: Props) => {
   const [inputTasks, setInputTask] = useState("");
 
-  const inputRef = useRef();
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const handleAddEnter = (e) => {
+  const handleAddEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       handleAddClick();
     }
@@ -34,7 +39,7 @@ export const TaskInput = ({ onAdd }) => {
       <button
         onClick={() => {
           handleAddClick();
-          inputRef.current.focus();
+          inputRef.current?.focus();
         }}
       >
         add

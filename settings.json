@@ -37,7 +37,7 @@
 
     "statusBar.background": "#090b0f",
     "statusBar.foreground": "#C8C8D0",
-    "statusBar.border": "#1A1625",
+    "statusBar.border": "#1A1625"
   },
   "editor.tokenColorCustomizations": {
     "comments": "#6a6a6a",
@@ -49,10 +49,10 @@
       {
         "scope": ["variable.parameter", "variable.other.readwrite"],
         "settings": {
-          "foreground": "#6a80e0",
-        },
-      },
-    ],
+          "foreground": "#6a80e0"
+        }
+      }
+    ]
 
     // "textMateRules": [
     //   {
@@ -134,7 +134,7 @@
   "editor.quickSuggestions": {
     "other": true, // Возвращает подсказки слов (useState, div и т.д.)
     "comments": false,
-    "strings": true,
+    "strings": true
   },
   "editor.suggestOnTriggerCharacters": true, // реакция на /
   "editor.inlineSuggest.enabled": false, // УБИРАЕТ серые ИИ-строки (Copilot/IntelliCode)
@@ -152,7 +152,7 @@
   "editor.codeActionsOnSave": {
     "source.organizeImports": "explicit",
     "source.fixAll": "explicit",
-    "source.fixAll.eslint": "explicit",
+    "source.fixAll.eslint": "explicit"
   },
   // --- 4. ОСТАЛЬНОЙ МУСОР (Чистка) ---
   "window.zoomLevel": 0,
@@ -167,5 +167,5 @@
   //
 
   "explorer.compactFolders": false,
-  "explorer.folders.expandSingleChildExpander": false,
+  "explorer.folders.expandSingleChildExpander": false
 }

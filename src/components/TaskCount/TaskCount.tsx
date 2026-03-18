@@ -1,8 +1,13 @@
+import type { Task } from "../../types/index.js";
 import s from "./TaskCount.module.scss";
 
-export function TaskCount({ tasks = [] }) {
+interface TaskCountProps {
+  tasks: Task[];
+}
+
+export function TaskCount({ tasks = [] }: TaskCountProps) {
   const completedCount = tasks.reduce(
-    (acc, tasks) => (tasks.completed ? acc + 1 : acc),
+    (acc, task) => (task.completed ? acc + 1 : acc),
     0,
   );
 
@@ -12,7 +17,8 @@ export function TaskCount({ tasks = [] }) {
   return (
     <div className={s.countContainer}>
       <p>
-        Выполнено: <span className={s.highlight}>{completedCount}</span> из{" "}{total}
+        Выполнено: <span className={s.highlight}>{completedCount}</span> из{" "}
+        {total}
       </p>
       <div className={s.progressBar}>
         <div

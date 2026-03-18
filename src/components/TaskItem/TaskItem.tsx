@@ -1,8 +1,16 @@
 import cn from "classnames";
 import { useState } from "react";
+import type { IdAction, IdTextAction, Task } from "../../types/index.js";
 import s from "./TaskItem.module.scss";
 
-export function TaskItem({ task, onDelete, onToggle, onSave }) {
+interface Props {
+  task: Task;
+  onDelete: IdAction;
+  onToggle: IdAction;
+  onSave: IdTextAction;
+}
+
+export function TaskItem({ task, onDelete, onToggle, onSave }: Props) {
   const [editInput, setEditInput] = useState("");
   const [isEditing, setIsEditing] = useState(false);
 
@@ -19,8 +27,8 @@ export function TaskItem({ task, onDelete, onToggle, onSave }) {
   return (
     <div
       className={cn(s.itemCard, {
-        [s.completed]: task.completed,
-        [s.activtask]: !task.completed,
+        [s.completed as string]: task.completed,
+        [s.activtask as string]: !task.completed,
       })}
     >
       {isEditing ? (

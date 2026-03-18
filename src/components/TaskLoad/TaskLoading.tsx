@@ -1,4 +1,4 @@
-// src/components/TaskLoad/TaskLoading.jsx
+// src/components/TaskLoad/TaskLoading.tsx
 import { useEffect, useState } from "react";
 
 export function TaskLoading() {
