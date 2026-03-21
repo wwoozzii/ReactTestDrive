@@ -1,13 +1,11 @@
 import { useMemo, useState } from "react";
 import "./App.css";
 import { useLocalStorage } from "./hooks/useLocalStorage.js";
-import { getRandomAdvice } from "./services/adviceService.js";
-import { getRandomImage } from "./services/imageService.js";
 import type {
 	IdAction,
 	IdTextAction,
 	Task,
-	TextAction
+	TextAction,
 } from "./types/index.js";
 
 import {
@@ -22,8 +20,8 @@ function App() {
   const [tasks, setTasks] = useLocalStorage<Task[]>("", []);
   const [searchTask, setSearchTask] = useState("");
   //API
-  const [advice, setAdvice] = useState("");
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
+  //   const [advice, setAdvice] = useState("");
+  //   const [imageUrl, setImageUrl] = useState<string | null>(null);
 
   const addTask: TextAction = (text) => {
     setTasks((prev) => [
@@ -79,43 +77,18 @@ function App() {
     setSearchTask(text);
   };
 
-  const handleGetAdvice = async () => {
-    const text = await getRandomAdvice();
-    setAdvice(text);
-  };
+  //   const handleGetAdvice = async () => {
+  //     const text = await getRandomAdvice();
+  //     setAdvice(text);
+  //   };
 
-  const handleGetImage = async () => {
-    const image = await getRandomImage();
-    setImageUrl(image);
-  };
+  //   const handleGetImage = async () => {
+  //     const image = await getRandomImage();
+  //     setImageUrl(image);
+  //   };
 
   return (
     <div className="app">
-      <div style={{ padding: "20px", color: "white" }}>
-        <h2>Совет дня</h2>
-        <p>{advice || "Нажми на кнопку, чтобы получить совет"}</p>
-
-        <button onClick={handleGetAdvice}>Получить совет</button>
-      </div>
-
-      <div>
-        {imageUrl ? (
-          <img
-            src={imageUrl}
-            alt="Рандомная собака"
-            style={{
-              width: "300px",
-              borderRadius: "10px",
-              display: "block",
-              marginBottom: "10px",
-            }}
-          />
-        ) : (
-          <p>Нажми кнопку</p>
-        )}
-        <button onClick={handleGetImage}>Получить изображение</button>
-      </div>
-
       <TaskInput onAdd={addTask} />
       <TaskFilter currentCategory={category} onCategoryChange={setCategory} />
 
