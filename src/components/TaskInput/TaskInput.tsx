@@ -1,13 +1,11 @@
 import { useRef, useState } from "react";
-import type { TextAction } from "../../types/index.js";
+import { useTasks } from "../context/TaskContext.js";
 import s from "./TaskInput.module.scss";
 
-interface Props {
-  onAdd: TextAction;
-}
-
-export const TaskInput = ({ onAdd }: Props) => {
+export const TaskInput = () => {
+  const [isButtActive, setIsButtActive] = useState(false);
   const [inputTasks, setInputTask] = useState("");
+  const { onAdd } = useTasks();
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -27,23 +25,31 @@ export const TaskInput = ({ onAdd }: Props) => {
   };
 
   return (
-    <div className={s.InputContainer}>
-      <input
-        type="text"
-        ref={inputRef}
-        value={inputTasks}
-        onKeyDown={handleAddEnter}
-        placeholder="New task..."
-        onChange={(e) => setInputTask(e.target.value)}
-      ></input>
-      <button
-        onClick={() => {
-          handleAddClick();
-          inputRef.current?.focus();
-        }}
-      >
-        add
-      </button>
+    <div>
+      {isButtActive ? (
+        <div className={s.InputContainer}>
+          <input
+            type="text"
+            ref={inputRef}
+            value={inputTasks}
+            onKeyDown={handleAddEnter}
+            placeholder="New task..."
+            onChange={(e) => setInputTask(e.target.value)}
+          ></input>
+          <button
+            onClick={() => {
+              handleAddClick();
+              inputRef.current?.focus();
+            }}
+          >
+            add
+          </button>
+        </div>
+      ) : (
+        <div className={s.plusContainer}>
+          <button onClick={() => setIsButtActive(true)}>+</button>
+        </div>
+      )}
     </div>
   );
 };

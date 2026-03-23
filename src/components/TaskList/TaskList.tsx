@@ -1,18 +1,15 @@
-import type { IdAction, IdTextAction, Task } from "../../types/index.js";
+import type { Task } from "../../types/index.js";
+import { useTasks } from "../context/TaskContext.js";
 import { TaskItem } from "../TaskItem/TaskItem.js";
 import s from "./TaskList.module.scss";
 
-interface Props {
-  tasks: Task[];
-  onDelete: IdAction;
-  onToggle: IdAction;
-  onSave: IdTextAction;
-}
+export function TaskList() {
+  const { filteredTasks, onDelete, onToggle, onSave } = useTasks();
+  const safeTasks = filteredTasks || [];
 
-export function TaskList({ tasks = [], onDelete, onToggle, onSave }: Props) {
   return (
     <div className={s.listContainer}>
-      {tasks.filter(Boolean).map((t) => (
+      {safeTasks.filter(Boolean).map((t: Task) => (
         <TaskItem
           key={t.id}
           task={t}

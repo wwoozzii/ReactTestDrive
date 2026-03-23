@@ -45,6 +45,7 @@ export function TaskItem({ task, onDelete, onToggle, onSave }: Props) {
         </>
       ) : (
         // -------- стандартный режим
+        // три точки меню которые при нажатии показывают блок меню с тремя кнопками, прямо как в инпуте плюс
         <>
           <span onClick={() => onToggle(task.id)}>{task.name}</span>
 

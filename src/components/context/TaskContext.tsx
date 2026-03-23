@@ -1,0 +1,90 @@
+import type { ReactNode } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
+import { useLocalStorage } from "../../hooks/useLocalStorage.js";
+import type { Task } from "../../types/index.js";
+
+interface TaskContextType {
+  tasks: Task[];
+  filteredTasks: Task[];
+  searchTask: string;
+  category: "all" | "active" | "completed";
+  onAdd: (text: string) => void;
+  onDelete: (id: number) => void;
+  onSave: (id: number, text: string) => void;
+  onToggle: (id: number) => void;
+  setCategory: (cat: "all" | "active" | "completed") => void;
+  setSearchTask: (text: string) => void;
+}
+
+const TaskContext = createContext<TaskContextType | undefined>(undefined);
+
+export const TaskProvider = ({ children }: { children: ReactNode }) => {
+  const [tasks, setTasks] = useLocalStorage<Task[]>("", []);
+  const [searchTask, setSearchTask] = useState("");
+  const [category, setCategory] = useState<"all" | "active" | "completed">(
+    "all",
+  );
+
+  const onAdd = (text: string) => {
+    setTasks((prev) => [
+      {
+        id: Date.now(),
+        name: text,
+        completed: false,
+      },
+      ...prev,
+    ]);
+  };
+
+  const onDelete = (id: number) => {
+    setTasks((prev) => prev.filter((t) => t.id !== id));
+  };
+
+  const onSave = (id: number, text: string) => {
+    setTasks((prev) =>
+      prev.map((t) => (t.id === id ? { ...t, name: text } : t)),
+    );
+  };
+
+  const onToggle = (id: number) => {
+    setTasks((prev) =>
+      prev.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t)),
+    );
+  };
+
+  const filteredTasks = useMemo(() => {
+    if (!tasks) return;
+    const safeTasks = Array.isArray(tasks) ? tasks : [];
+    return safeTasks.filter((task) => {
+      const matchesSearch = task.name
+        .toLowerCase()
+        .includes(searchTask.toLowerCase());
+      if (!matchesSearch) return false;
+      if (category === "active") return !task.completed;
+      if (category === "completed") return task.completed;
+      return true; //all
+    });
+  }, [tasks, category, searchTask]);
+
+  //free value
+  const value: TaskContextType = {
+    tasks: tasks || [],
+    filteredTasks: filteredTasks || [],
+    searchTask,
+    category,
+    onAdd,
+    onDelete,
+    onSave,
+    onToggle,
+    setCategory,
+    setSearchTask,
+  };
+
+  return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;
+};
+
+export const useTasks = () => {
+  const context = useContext(TaskContext);
+  if (!context) throw new Error("useTasks must be used within a TaskProvider");
+  return context;
+};
