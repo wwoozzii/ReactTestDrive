@@ -2,64 +2,117 @@
 @use "../../styles/mixins" as m;
 
 .itemCard {
+  position: relative;
   display: flex;
-  flex-direction: row;
-  gap: 10px;
+  //Mobile
+  flex-direction: column;
+  gap: 15px;
+  border-radius: 10px;
+  padding: 15px;
+  padding-right: 35px;
 
-  background: rgb(46, 46, 46);
-  border-radius: 5px;
-  padding: 10px;
-
+  // тут добавить еще пару классов под приоритет или сложность задачи, красный/желтый/зеленый
   &.completed {
-    // text-decoration: line-through;
-    background-color: rgba(5, 247, 5, 0.068);
+    background-color: rgba(255, 255, 255, 0.13);
+    color: rgba(255, 255, 255, 0.596);
   }
   &.activtask {
-    background-color: rgba(255, 0, 0, 0.144);
+    // background-color: rgb(159, 189, 105);
+    background-color: v.$task-activecolor;
+    color: black;
   }
-
   span {
     flex: 1;
-    margin-right: 15px;
-    margin: 10px;
     cursor: pointer;
-    color: white;
+    // color: black;
+    font-size: 18px;
+    word-break: break-word;
   }
+}
+
+// input {
+//   box-sizing: border-box;
+//   width: 100%;
+//   border: none;
+//   outline: none;
+//   font-size: 16px;
+//   background: v.$but-color;
+//   padding: 7px 10px;
+//   line-height: 1.5;
+//   border-radius: v.$main-radius;
+//   margin-left: 6px;
+//   &:hover {
+//     background: v.$but-hover-color;
+//   }
+//   &::placeholder {
+//     font-style: italic;
+//     color: rgba(255, 255, 255, 0.685);
+//     opacity: 1;
+//   }
+
+//   @media (min-width: 768px) {
+//     flex-direction: row;
+//     align-items: center;
+//     padding: 10px;
+
+//     button {
+//       width: auto;
+//       margin-left: 10px;
+//     }
+
+//     input {
+//       width: auto;
+//       margin-left: 6px;
+//     }
+//   }
+// }
+
+.kebabContainer {
+  position: absolute;
+  top: 10px;
+  right: 0px;
+  display: inline-block;
+  //   z-index: 5;
+}
+.kebabButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 50%;
+  transition: background 0.2s;
+  z-index: 1;
+
+  &:active {
+    transform: scale(0.95);
+    transform: translate(0, 3px);
+    transition: all 0.5s ease;
+  }
+}
+.kebabMenuButton {
+  position: absolute;
+  top: 100%;
+  right: 9px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  z-index: 999;
+
+  //окно
+  background-color: rgb(43, 43, 43);
+  border-radius: 8px;
+  padding: 8px;
+  min-width: 120px;
 
   button {
-    @include m.base-button;
-    margin-left: 10px;
-    &:hover {
-      color: rgba(255, 255, 255, 0.918);
+    @include m.global-but {
+      padding: 10px;
     }
+
     &:active {
-      box-shadow: 0 0px 17px rgba(255, 240, 213, 0.349);
-
-      transition: all 0.2s ease;
-    }
-  }
-
-  input {
-    border: none;
-    outline: none;
-    font-size: 16px;
-    background: v.$but-color;
-    padding: 7px 10px;
-    line-height: 1.5;
-    border-radius: v.$main-radius;
-    margin-left: 6px;
-    &:focus {
-      outline: none;
-      background-color: v.$but-hover-color;
-      color: white;
-    }
-    &:hover {
-      background: v.$but-hover-color;
-    }
-    &::placeholder {
-      font-style: italic;
-      color: rgba(255, 255, 255, 0.685);
-      opacity: 1;
+      transform: scale(0.95);
+      transform: translate(0, 3px);
+      transition: all 0.5s ease;
     }
   }
 }

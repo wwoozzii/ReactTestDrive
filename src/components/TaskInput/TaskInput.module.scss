@@ -16,7 +16,7 @@
     border: none;
     outline: none;
     font-size: 16px;
-    background: v.$but-color;
+    background: v.$global-buttcolor;
     padding: 7px 10px;
     line-height: 1.5;
 
@@ -27,11 +27,12 @@
     // margin-left: 6px;
     &:focus {
       outline: none;
-      background-color: v.$but-hover-color;
+      //   background-color: v.$but-hover-color;
       color: white;
     }
     &:hover {
-      background: v.$but-hover-color;
+      //   background: v.$but-hover-color;
+      color: white;
     }
     &::placeholder {
       font-style: italic;
@@ -49,10 +50,10 @@
     border: none;
     margin-left: 8px;
     padding: 12px 15px;
-    background-color: v.$but-color;
+    background-color: v.$global-buttcolor;
     border-radius: v.$main-radius;
     &:hover {
-      background: v.$but-hover-color;
+      //   background: v.$but-hover-color;
       color: rgba(255, 255, 255, 0.918);
       transform: scale(1.05);
       transition: all 0.3s ease;
@@ -64,5 +65,19 @@
       //тень
       box-shadow: 0 0px 17px rgba(255, 240, 213, 0.349);
     }
+  }
+}
+
+.plusContainer {
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 25px;
+    font-size: 20px;
   }
 }

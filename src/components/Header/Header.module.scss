@@ -1,0 +1,9 @@
+@use "../../styles/variabless" as v;
+@use "../../styles/mixins" as m;
+
+.headContainer {
+  h1 {
+    color: white;
+    margin-left: 0.8rem;
+  }
+}
