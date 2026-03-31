@@ -1,0 +1,10 @@
+:root {
+  //dark theme (default)
+  --bg-color: #242424;
+  --text-color: rgb(255, 255, 255);
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}

@@ -3,9 +3,11 @@
 
 .filterContainer {
   display: flex;
+  justify-content: center;
+
   overflow-x: auto;
-  padding-bottom: 5px;
-  gap: 8px;
+  padding: 9px 0 9px 0;
+  gap: 1.1rem;
 
   &::-webkit-scrollbar {
     display: none;
@@ -13,20 +15,18 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 
-  padding-top: 9px;
-
   button {
     white-space: nowrap;
-    flex-shrink: 0;
-
+    color: rgba(255, 255, 255, 0.384);
     border: none;
-    padding: 13px 15px;
-    margin: 0 10px 0 0;
-    background-color: v.$but-color;
-    border-radius: v.$main-radius;
+    padding: 0.8rem 2.2rem;
+    background-color: v.$global-buttcolor;
+    border-radius: 20px;
+    border: 1px solid;
+
     &:hover {
-      background: v.$but-hover-color;
-      color: rgba(255, 255, 255, 0.918);
+      //   background: v.$but-hover-color;
+      //   color: rgba(255, 255, 255, 0.918);
       transform: scale(1.05);
       transition: all 0.3s ease;
     }
@@ -34,13 +34,10 @@
       transform: scale(0.95);
       transform: translate(0, 3px);
       transition: all 0.2s ease;
-      //тень
-      //   box-shadow: 0 0px 17px rgba(255, 240, 213, 0.349);
     }
     &.completed {
-      //   background-color: v.$but-hover-color;
-      color: rgba(255, 255, 255, 0.918);
-      box-shadow: 0 2.7px 0px rgb(255, 255, 255);
+      //   border: 1px solid;
+      color: v.$global-textcolor;
     }
   }
 }

@@ -14,17 +14,27 @@
 @mixin base-button {
   border: none;
   padding: 12px 15px;
+  color: rgb(255, 255, 255);
   background-color: v.$but-color;
   border-radius: v.$main-radius;
   cursor: pointer;
   transition: all 0.3s ease;
-  &:hover {
-    background: v.$but-hover-color;
-    transform: scale(1.05);
-  }
+  //   &:hover {
+  //     background: v.$but-hover-color;
+  //     transform: scale(1.05);
+  //   }
 
   &:active {
     transform: scale(0.95) translateY(3px);
   }
+  @content;
+}
+
+@mixin global-but {
+  border: none;
+  cursor: pointer;
+  color: white;
+  background-color: v.$global-buttcolor;
+  border-radius: v.$main-radius;
   @content;
 }
