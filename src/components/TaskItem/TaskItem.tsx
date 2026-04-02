@@ -62,7 +62,7 @@ export function TaskItem({ task }: Props) {
                     initial={{ opacity: 0, scale: 0.5, x: 10, y: -10 }}
                     animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
                     exit={{ opacity: 0, scale: 0.5, x: 10, y: -10 }}
-                    transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+                    transition={{ duration: 0.19, ease: [0.4, 0, 0.2, 1] }}
                   >
                     <button onClick={() => setIsEditing(true)}>Edit</button>
                     <button onClick={() => onToggle(task.id)}> Done</button>
