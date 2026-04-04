@@ -2,9 +2,26 @@
   //dark theme (default)
   --bg-color: #242424;
   --text-color: rgb(255, 255, 255);
+
+  //fonts
+  --main-font: "Ubuntu", sans-serif;
+  --main-size-font: 16px;
 }
 
 body {
+  //theme color
   background-color: var(--bg-color);
   color: var(--text-color);
+
+  //fonts
+  font-family: var(--main-font);
+  font-size: var(--main-size-font);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
 }
