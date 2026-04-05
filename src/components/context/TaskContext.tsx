@@ -40,15 +40,15 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
     setTasks((prev) => prev.filter((t) => t.id !== id));
   };
 
-  const onSave = (id: number, text: string) => {
-    setTasks((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, name: text } : t)),
-    );
-  };
-
   const onToggle = (id: number) => {
     setTasks((prev) =>
       prev.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t)),
+    );
+  };
+
+  const onSave = (id: number, text: string) => {
+    setTasks((prev) =>
+      prev.map((t) => (t.id === id ? { ...t, name: text } : t)),
     );
   };
 
