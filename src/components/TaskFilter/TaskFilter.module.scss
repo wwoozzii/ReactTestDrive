@@ -23,7 +23,7 @@
 
     padding: 0.8rem 0;
 
-    color: rgba(255, 255, 255, 0.384);
+    color: rgba(255, 255, 255, 0.35);
     background-color: v.$global-buttcolor;
     border-radius: 20px;
     border: 1px solid;
@@ -37,8 +37,8 @@
       transition: all 0.2s ease;
     }
     &.completed {
-      //   border: 1px solid;
       color: v.$global-textcolor;
+      transform: scale(1.05);
     }
   }
 }
