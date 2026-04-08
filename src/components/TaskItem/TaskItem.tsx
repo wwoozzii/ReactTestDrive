@@ -49,10 +49,12 @@ export function TaskItem({ task }: Props) {
           <span>{task.name}</span>
           <div className={s.kebabContainer} ref={menuRef}>
             <button
-              className={s.kebabButton}
+              className={cn(s.kebabButton, {
+                [s.completed as string]: task.completed,
+              })}
               onClick={() => setIsKebab(!isKebab)}
             >
-              <MoreVertical size={20} color="#000000" strokeWidth={1.5} />
+              <MoreVertical size={20} color="currentColor" strokeWidth={1.5} />
             </button>
             <div>
               <AnimatePresence>

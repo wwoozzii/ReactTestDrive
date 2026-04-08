@@ -10,11 +10,29 @@
   border-radius: 10px;
   padding: 15px;
   padding-right: 35px;
+  border: 1px solid;
 
   // тут добавить еще пару классов под приоритет или сложность задачи, красный/желтый/зеленый
   &.completed {
-    background-color: rgb(32, 32, 32);
-    color: rgba(255, 255, 255, 0.596);
+    background-color: rgb(44, 44, 44);
+    color: rgba(255, 255, 255, 0.342);
+    border-color: rgba(255, 255, 255, 0.089);
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 20%;
+      border-radius: 0 0 10px 10px;
+
+      background: linear-gradient(
+        to bottom,
+        rgba(44, 44, 44, 0) 0%,
+        rgb(44, 44, 44) 100%
+      );
+      pointer-events: none;
+    }
   }
   &.activtask {
     // background-color: rgb(159, 189, 105);
@@ -87,6 +105,10 @@
     transform: scale(0.95);
     transform: translate(0, 3px);
     transition: all 0.5s ease;
+  }
+
+  &.completed {
+    color: rgba(255, 255, 255, 0.342);
   }
 }
 .kebabMenuButton {
