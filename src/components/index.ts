@@ -1,6 +1,7 @@
 // src/components/index.ts
 export { EditMode } from "./EditMode/index.js";
 export { TaskCount } from "./TaskCount/index.js";
+export { TaskDate } from "./TaskDate/index.js";
 export { TaskFilter } from "./TaskFilter/index.js";
 export { TaskInput } from "./TaskInput/index.js";
 export { TaskItem } from "./TaskItem/index.js";

@@ -31,6 +31,7 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
         id: Date.now(),
         name: text,
         completed: false,
+        createDat: Date.now(),
       },
       ...prev,
     ]);

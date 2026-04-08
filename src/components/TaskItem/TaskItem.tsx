@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import type { Task } from "../../types/index.js";
 import { useTasks } from "../context/TaskContext.js";
 import { EditMode } from "../EditMode/EditMode.js";
+import { TaskDate } from "../TaskDate/TaskDate.js";
 import s from "./TaskItem.module.scss";
 
 interface Props {
@@ -97,6 +98,14 @@ export function TaskItem({ task }: Props) {
           </div>
         </div>
       )}
+      <div
+        className={cn(s.dateContainer, {
+          [s.completed as string]: task.completed,
+          [s.active as string]: !task.completed,
+        })}
+      >
+        <TaskDate task={task} />
+      </div>
     </div>
   );
 }

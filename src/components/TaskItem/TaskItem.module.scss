@@ -13,7 +13,7 @@
 
   // тут добавить еще пару классов под приоритет или сложность задачи, красный/желтый/зеленый
   &.completed {
-    background-color: rgba(255, 255, 255, 0.13);
+    background-color: rgb(32, 32, 32);
     color: rgba(255, 255, 255, 0.596);
   }
   &.activtask {
@@ -111,10 +111,19 @@
       padding: 10px;
     }
 
-    &:active {
-      transform: scale(0.95);
-      transform: translate(0, 3px);
-      transition: all 0.5s ease;
-    }
+    // &.active {
+    //   transform: scale(0.95);
+    //   transform: translate(0, 3px);
+    //   transition: all 0.5s ease;
+    // }
+  }
+}
+
+.dateContainer {
+  &.active {
+    color: rgba(0, 0, 0, 0.418);
+  }
+  &.completed {
+    color: rgba(255, 255, 255, 0.185);
   }
 }

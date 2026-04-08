@@ -2,6 +2,7 @@ export interface Task {
   id: number;
   name: string;
   completed: boolean;
+  createDat: number;
 }
 export interface TaskTool {
   onDelete: (id: number) => void;
