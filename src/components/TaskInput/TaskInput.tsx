@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTasks } from "../context/TaskContext.js";
 import s from "./TaskInput.module.scss";
 
@@ -22,7 +22,18 @@ export const TaskInput = () => {
     if (!readyAddText) return;
     onAdd(readyAddText);
     setInputTask("");
+
+    setIsButtActive(false);
   };
+
+  useEffect(() => {
+    if (isButtActive && inputRef.current) {
+      const timer = setTimeout(() => {
+        inputRef.current?.focus;
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [isButtActive]);
 
   return (
     <div>
@@ -35,11 +46,15 @@ export const TaskInput = () => {
             onKeyDown={handleAddEnter}
             placeholder="New task..."
             onChange={(e) => setInputTask(e.target.value)}
+            autoFocus
           ></input>
           <button
             onClick={() => {
               handleAddClick();
-              inputRef.current?.focus();
+              //   inputRef.current?.focus();
+              //оказалось что действие фокуса было перекрыто чем то ниже, ок.. просто удали потом
+              // тут под сомнением тк потом с модалкой не нужно будет сохранять фокус,
+              //  ведь именно эта кнопка будет финальной(закрывать модалку)
             }}
           >
             add
@@ -47,7 +62,12 @@ export const TaskInput = () => {
         </div>
       ) : (
         <div className={s.plusContainer}>
-          <button onClick={() => setIsButtActive(true)}>+</button>
+          <button
+            className={s.plusButton}
+            onClick={() => setIsButtActive(true)}
+          >
+            +
+          </button>
         </div>
       )}
     </div>
