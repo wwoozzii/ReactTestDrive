@@ -76,12 +76,22 @@
     position: fixed;
     z-index: 100;
     bottom: 50px;
-    right: 20px;
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    padding: 25px;
+    right: 32px;
+
+    width: 65px;
+    height: 65px;
+
+    background-color: v.$global-buttcolor;
+    color: v.$global-textcolor;
+    border: 1px solid;
+    border-color: rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+    padding: 20px 20px;
     font-size: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
   }
 }
