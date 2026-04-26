@@ -25,16 +25,6 @@
 
     border-radius: v.$main-radius;
     color: v.$global-textcolor;
-
-    &:focus {
-      outline: none;
-      //   background-color: v.$but-hover-color;
-      color: v.$global-textcolor;
-    }
-    &:hover {
-      //   background: v.$but-hover-color;
-      color: white;
-    }
     &::placeholder {
       font-style: italic;
       color: rgba(255, 255, 255, 0.685);
@@ -49,7 +39,6 @@
     @include m.tablet {
       flex: 0 0 auto;
     }
-    // margin-left: 8px;
     padding: 12px 15px;
     border: none;
     background-color: v.$global-buttcolor;
@@ -64,8 +53,8 @@
       transform: scale(0.95);
       transform: translate(0, 3px);
       transition: all 0.2s ease;
-      //тень
-      box-shadow: 0 0px 17px rgba(255, 240, 213, 0.349);
+      border: 1px solid;
+      border-color: v.$global-textcolor;
     }
   }
 }
