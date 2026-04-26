@@ -1,6 +1,8 @@
 import { useState } from "react";
+import TextareaAutosize from "react-textarea-autosize";
 import type { Task } from "../../types/index.js";
 import { useTasks } from "../context/TaskContext.js";
+import s from "../EditMode/EditMode.module.scss";
 
 interface EditModeProps {
   task: Task;
@@ -25,12 +27,21 @@ export function EditMode({ task, onClose }: EditModeProps) {
   return (
     // -------- режим редактора
     <>
-      <input
+      {/* <input
         type="text"
         value={editInput}
         onChange={(e) => setEditInput(e.target.value)}
         autoFocus
-      ></input>
+      ></input> */}
+      <TextareaAutosize
+        cacheMeasurements
+        className={s.InputTextarea}
+        value={editInput}
+        autoFocus={true}
+        onChange={(e) => setEditInput(e.target.value)}
+        minRows={1}
+        maxRows={5}
+      />
       <button onClick={handleSaveClick}>✅ Save</button>
       <button onClick={onClose}>❌ Cancel</button>
     </>
