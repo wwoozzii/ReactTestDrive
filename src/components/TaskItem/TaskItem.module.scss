@@ -17,22 +17,6 @@
     background-color: rgb(44, 44, 44);
     color: rgba(255, 255, 255, 0.342);
     border-color: rgba(255, 255, 255, 0.089);
-    &::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 20%;
-      border-radius: 0 0 10px 10px;
-
-      background: linear-gradient(
-        to bottom,
-        rgba(44, 44, 44, 0) 0%,
-        rgb(44, 44, 44) 100%
-      );
-      pointer-events: none;
-    }
   }
   &.activtask {
     // background-color: rgb(159, 189, 105);
@@ -42,55 +26,16 @@
   span {
     flex: 1;
     cursor: pointer;
-    // color: black;
     font-size: 18px;
     word-break: break-word;
   }
 }
-
-// input {
-//   box-sizing: border-box;
-//   width: 100%;
-//   border: none;
-//   outline: none;
-//   font-size: 16px;
-//   background: v.$but-color;
-//   padding: 7px 10px;
-//   line-height: 1.5;
-//   border-radius: v.$main-radius;
-//   margin-left: 6px;
-//   &:hover {
-//     background: v.$but-hover-color;
-//   }
-//   &::placeholder {
-//     font-style: italic;
-//     color: rgba(255, 255, 255, 0.685);
-//     opacity: 1;
-//   }
-
-//   @media (min-width: 768px) {
-//     flex-direction: row;
-//     align-items: center;
-//     padding: 10px;
-
-//     button {
-//       width: auto;
-//       margin-left: 10px;
-//     }
-
-//     input {
-//       width: auto;
-//       margin-left: 6px;
-//     }
-//   }
-// }
 
 .kebabContainer {
   position: absolute;
   top: 10px;
   right: 12px;
   display: inline-block;
-  //   z-index: 5;
 }
 .kebabButton {
   background: transparent;
