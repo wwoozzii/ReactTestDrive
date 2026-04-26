@@ -8,12 +8,13 @@
   justify-content: left;
   margin-top: 15px;
 
-  input {
+  .InputTextarea {
     flex: 1;
     min-width: 280px;
     width: 100%;
     max-width: 700px;
 
+    resize: none;
     border: none;
     outline: none;
     font-size: 16px;
@@ -23,11 +24,12 @@
     line-height: 1.5;
 
     border-radius: v.$main-radius;
-    // margin-left: 6px;
+    color: v.$global-textcolor;
+
     &:focus {
       outline: none;
       //   background-color: v.$but-hover-color;
-      color: white;
+      color: v.$global-textcolor;
     }
     &:hover {
       //   background: v.$but-hover-color;

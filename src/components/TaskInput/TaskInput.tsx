@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import TextareaAutosize from "react-textarea-autosize";
 import { useTasks } from "../context/TaskContext.js";
 import s from "./TaskInput.module.scss";
 
@@ -7,9 +8,9 @@ export const TaskInput = () => {
   const [inputTasks, setInputTask] = useState("");
   const { onAdd } = useTasks();
 
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  const handleAddEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleAddEnter = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter") {
       handleAddClick();
     }
@@ -39,7 +40,7 @@ export const TaskInput = () => {
     <div>
       {isButtActive ? (
         <div className={s.InputContainer}>
-          <input
+          {/* <input
             type="text"
             ref={inputRef}
             value={inputTasks}
@@ -47,7 +48,19 @@ export const TaskInput = () => {
             placeholder="New task..."
             onChange={(e) => setInputTask(e.target.value)}
             autoFocus
-          ></input>
+          ></input> */}
+          <TextareaAutosize
+            cacheMeasurements
+            className={s.InputTextarea}
+            ref={inputRef}
+            value={inputTasks}
+            placeholder="New task..."
+            autoFocus={true}
+            onChange={(e) => setInputTask(e.target.value)}
+            onKeyDown={handleAddEnter}
+            minRows={1}
+            maxRows={5}
+          />
           <button
             onClick={() => {
               handleAddClick();
