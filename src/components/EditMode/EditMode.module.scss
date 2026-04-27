@@ -1,0 +1,54 @@
+@use "../../styles/variabless" as v;
+@use "../../styles/mixins" as m;
+
+.EditContainer {
+  .InputTextarea {
+    flex: 1;
+    min-width: 280px;
+    width: 100%;
+    max-width: 700px;
+
+    resize: none;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    margin-left: 0;
+    background: v.$global-buttcolor;
+    padding: 12px 10px;
+    line-height: 1.5;
+
+    border-radius: v.$main-radius;
+    color: v.$global-textcolor;
+    &::placeholder {
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.685);
+      opacity: 1;
+    }
+  }
+
+  button {
+    flex: 1;
+    min-width: 80px;
+
+    @include m.tablet {
+      flex: 0 0 auto;
+    }
+    padding: 12px 15px;
+    border: none;
+    background-color: v.$global-buttcolor;
+    border-radius: v.$main-radius;
+    color: v.$global-textcolor;
+    &:hover {
+      //   background: v.$but-hover-color;
+      transform: scale(1.05);
+      transition: all 0.3s ease;
+    }
+    &:active {
+      transform: scale(0.95);
+      transform: translate(0, 3px);
+      transition: all 0.2s ease;
+      border: 1px solid;
+      border-color: v.$global-textcolor;
+    }
+  }
+}

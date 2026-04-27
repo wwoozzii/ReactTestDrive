@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
 import type { Task } from "../../types/index.js";
 import { useTasks } from "../context/TaskContext.js";
@@ -12,7 +12,20 @@ interface EditModeProps {
 export function EditMode({ task, onClose }: EditModeProps) {
   const { onSave } = useTasks();
   const [editInput, setEditInput] = useState(task.name);
-  //   const [isEditing, setIsEditing] = useState(false);
+  const editRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    if (editRef.current) {
+      const erc = editRef.current;
+      erc.setSelectionRange(erc.value.length, erc.value.length);
+    }
+  }, []);
+
+  const handleSaveEnter = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter") {
+      handleSaveClick();
+    }
+  };
 
   const handleSaveClick = () => {
     if (editInput.trim() === "") return;
@@ -26,24 +39,20 @@ export function EditMode({ task, onClose }: EditModeProps) {
 
   return (
     // -------- режим редактора
-    <>
-      {/* <input
-        type="text"
-        value={editInput}
-        onChange={(e) => setEditInput(e.target.value)}
-        autoFocus
-      ></input> */}
+    <div className={s.EditContainer}>
       <TextareaAutosize
-        cacheMeasurements
+        ref={editRef}
         className={s.InputTextarea}
         value={editInput}
         autoFocus={true}
         onChange={(e) => setEditInput(e.target.value)}
+        onKeyDown={handleSaveEnter}
+        cacheMeasurements
         minRows={1}
         maxRows={5}
       />
-      <button onClick={handleSaveClick}>✅ Save</button>
-      <button onClick={onClose}>❌ Cancel</button>
-    </>
+      <button onClick={onClose}>Cancel</button>
+      <button onClick={handleSaveClick}>Save</button>
+    </div>
   );
 }
