@@ -8,12 +8,14 @@ interface TaskContextType {
   filteredTasks: Task[];
   searchTask: string;
   category: "all" | "active" | "completed";
+  isAddMode: boolean;
   onAdd: (text: string) => void;
   onDelete: (id: number) => void;
   onSave: (id: number, text: string) => void;
   onToggle: (id: number) => void;
   setCategory: (cat: "all" | "active" | "completed") => void;
   setSearchTask: (text: string) => void;
+  setIsAddMode: (value: boolean) => void;
 }
 
 const TaskContext = createContext<TaskContextType | undefined>(undefined);
@@ -24,6 +26,7 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
   const [category, setCategory] = useState<"all" | "active" | "completed">(
     "all",
   );
+  const [isAddMode, setIsAddMode] = useState<boolean>(false);
 
   const onAdd = (text: string) => {
     setTasks((prev) => [
@@ -73,12 +76,14 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
     filteredTasks: filteredTasks || [],
     searchTask,
     category,
+    isAddMode,
     onAdd,
     onDelete,
     onSave,
     onToggle,
     setCategory,
     setSearchTask,
+    setIsAddMode,
   };
 
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;

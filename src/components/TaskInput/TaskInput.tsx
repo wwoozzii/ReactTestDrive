@@ -4,17 +4,10 @@ import { useTasks } from "../context/TaskContext.js";
 import s from "./TaskInput.module.scss";
 
 export const TaskInput = () => {
-  const [isButtActive, setIsButtActive] = useState(false);
+  const { onAdd, isAddMode, setIsAddMode } = useTasks();
   const [inputTasks, setInputTask] = useState("");
-  const { onAdd } = useTasks();
-
+  //   const [isButtActive, setIsButtActive] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
-
-  const handleAddEnter = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === "Enter") {
-      handleAddClick();
-    }
-  };
 
   const handleAddClick = () => {
     if (inputTasks.trim() === "") return;
@@ -23,32 +16,28 @@ export const TaskInput = () => {
     if (!readyAddText) return;
     onAdd(readyAddText);
     setInputTask("");
+    setIsAddMode(false);
+  };
 
-    setIsButtActive(false);
+  const handleAddEnter = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter") {
+      handleAddClick();
+    }
   };
 
   useEffect(() => {
-    if (isButtActive && inputRef.current) {
+    if (isAddMode && inputRef.current) {
       const timer = setTimeout(() => {
         inputRef.current?.focus;
       }, 50);
       return () => clearTimeout(timer);
     }
-  }, [isButtActive]);
+  }, [isAddMode]);
 
   return (
     <div>
-      {isButtActive ? (
+      {isAddMode ? (
         <div className={s.InputContainer}>
-          {/* <input
-            type="text"
-            ref={inputRef}
-            value={inputTasks}
-            onKeyDown={handleAddEnter}
-            placeholder="New task..."
-            onChange={(e) => setInputTask(e.target.value)}
-            autoFocus
-          ></input> */}
           <TextareaAutosize
             cacheMeasurements
             className={s.InputTextarea}
@@ -75,10 +64,7 @@ export const TaskInput = () => {
         </div>
       ) : (
         <div className={s.plusContainer}>
-          <button
-            className={s.plusButton}
-            onClick={() => setIsButtActive(true)}
-          >
+          <button className={s.plusButton} onClick={() => setIsAddMode(true)}>
             +
           </button>
         </div>

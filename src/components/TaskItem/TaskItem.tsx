@@ -13,7 +13,7 @@ interface Props {
 }
 
 export function TaskItem({ task }: Props) {
-  const { onDelete, onToggle } = useTasks();
+  const { onDelete, onToggle, setIsAddMode, isAddMode } = useTasks();
 
   const [isEditing, setIsEditing] = useState(false);
   const [isKebab, setIsKebab] = useState(false);
@@ -34,6 +34,18 @@ export function TaskItem({ task }: Props) {
       document.removeEventListener("mousedown", handleClickOutSide);
     };
   }, [isKebab]);
+
+  useEffect(() => {
+    if (isEditing) {
+      setIsAddMode(false);
+    }
+  }, [isEditing]);
+
+  useEffect(() => {
+    if (isAddMode) {
+      setIsEditing(false);
+    }
+  }, [isAddMode]);
 
   return (
     <div
