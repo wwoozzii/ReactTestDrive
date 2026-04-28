@@ -9,6 +9,7 @@ interface TaskContextType {
   searchTask: string;
   category: "all" | "active" | "completed";
   isAddMode: boolean;
+  editTaskId: number | null;
   onAdd: (text: string) => void;
   onDelete: (id: number) => void;
   onSave: (id: number, text: string) => void;
@@ -16,6 +17,7 @@ interface TaskContextType {
   setCategory: (cat: "all" | "active" | "completed") => void;
   setSearchTask: (text: string) => void;
   setIsAddMode: (value: boolean) => void;
+  setEditTaskId: (id: number | null) => void;
 }
 
 const TaskContext = createContext<TaskContextType | undefined>(undefined);
@@ -27,6 +29,7 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
     "all",
   );
   const [isAddMode, setIsAddMode] = useState<boolean>(false);
+  const [editTaskId, setEditTaskId] = useState<number | null>(null);
 
   const onAdd = (text: string) => {
     setTasks((prev) => [
@@ -77,6 +80,7 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
     searchTask,
     category,
     isAddMode,
+    editTaskId,
     onAdd,
     onDelete,
     onSave,
@@ -84,6 +88,7 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
     setCategory,
     setSearchTask,
     setIsAddMode,
+    setEditTaskId,
   };
 
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;

@@ -13,9 +13,17 @@ interface Props {
 }
 
 export function TaskItem({ task }: Props) {
-  const { onDelete, onToggle, setIsAddMode, isAddMode } = useTasks();
+  const {
+    onDelete,
+    onToggle,
+    setIsAddMode,
+    isAddMode,
+    setEditTaskId,
+    editTaskId,
+  } = useTasks();
 
-  const [isEditing, setIsEditing] = useState(false);
+  //   const [isEditing, setIsEditing] = useState(false);
+  const isEdit = task.id === editTaskId;
   const [isKebab, setIsKebab] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -36,16 +44,16 @@ export function TaskItem({ task }: Props) {
   }, [isKebab]);
 
   useEffect(() => {
-    if (isEditing) {
+    if (isEdit) {
       setIsAddMode(false);
     }
-  }, [isEditing]);
+  }, [isEdit, setIsAddMode]);
 
   useEffect(() => {
     if (isAddMode) {
-      setIsEditing(false);
+      setEditTaskId(null);
     }
-  }, [isAddMode]);
+  }, [isAddMode, setEditTaskId]);
 
   return (
     <div
@@ -54,8 +62,8 @@ export function TaskItem({ task }: Props) {
         [s.activtask as string]: !task.completed,
       })}
     >
-      {isEditing ? (
-        <EditMode task={task} onClose={() => setIsEditing(false)} />
+      {isEdit ? (
+        <EditMode task={task} onClose={() => setEditTaskId(null)} />
       ) : (
         <div>
           <span>{task.name}</span>
@@ -90,7 +98,7 @@ export function TaskItem({ task }: Props) {
                     </button>
                     <button
                       onClick={() => {
-                        setIsEditing(true);
+                        setEditTaskId(task.id);
                         setIsKebab(false);
                       }}
                     >
