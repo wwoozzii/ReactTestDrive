@@ -40,7 +40,7 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
     if (editTaskId !== null) {
       setHandlerId(true);
     }
-  }, [editTaskId, setHandlerId]);
+  }, [editTaskId]);
 
   const onAdd = (text: string) => {
     setTasks((prev) => [
