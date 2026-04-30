@@ -25,7 +25,7 @@ interface TaskContextType {
 const TaskContext = createContext<TaskContextType | undefined>(undefined);
 
 export const TaskProvider = ({ children }: { children: ReactNode }) => {
-  const [tasks, setTasks] = useLocalStorage<Task[]>("", []);
+  const [tasks, setTasks] = useLocalStorage<Task[]>("todo-task-app", []);
   const [searchTask, setSearchTask] = useState("");
   const [category, setCategory] = useState<"all" | "active" | "completed">(
     "all",
