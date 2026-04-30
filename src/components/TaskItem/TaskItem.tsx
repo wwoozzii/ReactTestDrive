@@ -1,7 +1,8 @@
 import cn from "classnames";
 import { AnimatePresence, motion } from "framer-motion";
 import { MoreVertical } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { useClisckOutSide } from "../../hooks/useClickOutSide.js";
 import type { Task } from "../../types/index.js";
 import { useTasks } from "../context/TaskContext.js";
 import { EditMode } from "../EditMode/EditMode.js";
@@ -22,26 +23,12 @@ export function TaskItem({ task }: Props) {
     editTaskId,
   } = useTasks();
 
-  //   const [isEditing, setIsEditing] = useState(false);
   const isEdit = task.id === editTaskId;
   const [isKebab, setIsKebab] = useState(false);
-  const menuRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleClickOutSide = (event: MouseEvent) => {
-      if (
-        isKebab &&
-        menuRef.current &&
-        !menuRef.current.contains(event.target as Node)
-      ) {
-        setIsKebab(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutSide);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutSide);
-    };
-  }, [isKebab]);
+  const menuRef = useClisckOutSide<HTMLDivElement>(() => {
+    setIsKebab(false);
+  }, isKebab);
 
   useEffect(() => {
     if (isEdit) {

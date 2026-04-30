@@ -6,7 +6,6 @@ import s from "./TaskInput.module.scss";
 export const TaskInput = () => {
   const { onAdd, isAddMode, setIsAddMode } = useTasks();
   const [inputTasks, setInputTask] = useState("");
-  //   const [isButtActive, setIsButtActive] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const handleAddClick = () => {
