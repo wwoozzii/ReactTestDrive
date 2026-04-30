@@ -10,14 +10,13 @@ interface EditModeProps {
   onClose: () => void;
 }
 export function EditMode({ task, onClose }: EditModeProps) {
-  const { onSave, setHandlerId, handlerId, setEditTaskId, editTaskId } =
-    useTasks();
+  const { onSave, setEditTaskId, editTaskId } = useTasks();
   const [editInput, setEditInput] = useState(task.name);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const containerRef = useClisckOutSide<HTMLDivElement>(() => {
     setEditTaskId(null);
-  }, handlerId);
+  }, editTaskId !== null);
 
   useEffect(() => {
     if (textareaRef.current) {
