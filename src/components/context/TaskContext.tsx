@@ -71,7 +71,6 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const filteredTasks = useMemo(() => {
-    if (!tasks) return;
     const safeTasks = Array.isArray(tasks) ? tasks : [];
     return safeTasks.filter((task) => {
       const matchesSearch = task.name
