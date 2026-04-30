@@ -56,8 +56,10 @@ export function EditMode({ task, onClose }: EditModeProps) {
         minRows={1}
         maxRows={5}
       />
-      <button onClick={onClose}>Cancel</button>
-      <button onClick={handleSaveClick}>Save</button>
+      <div className={s.ButtonContainer}>
+        <button onClick={onClose}>Cancel</button>
+        <button onClick={handleSaveClick}>Save</button>
+      </div>
     </div>
   );
 }
