@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import TextareaAutosize from "react-textarea-autosize";
+import { useClisckOutSide } from "../../hooks/useClickOutSide.js";
 import type { Task } from "../../types/index.js";
 import { useTasks } from "../context/TaskContext.js";
 import s from "../EditMode/EditMode.module.scss";
@@ -8,15 +9,19 @@ interface EditModeProps {
   task: Task;
   onClose: () => void;
 }
-
 export function EditMode({ task, onClose }: EditModeProps) {
-  const { onSave } = useTasks();
+  const { onSave, setHandlerId, handlerId, setEditTaskId, editTaskId } =
+    useTasks();
   const [editInput, setEditInput] = useState(task.name);
-  const editRef = useRef<HTMLTextAreaElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const containerRef = useClisckOutSide<HTMLDivElement>(() => {
+    setEditTaskId(null);
+  }, handlerId);
 
   useEffect(() => {
-    if (editRef.current) {
-      const erc = editRef.current;
+    if (textareaRef.current) {
+      const erc = textareaRef.current;
       erc.setSelectionRange(erc.value.length, erc.value.length);
     }
   }, []);
@@ -39,9 +44,9 @@ export function EditMode({ task, onClose }: EditModeProps) {
 
   return (
     // -------- режим редактора
-    <div className={s.EditContainer}>
+    <div className={s.EditContainer} ref={containerRef}>
       <TextareaAutosize
-        ref={editRef}
+        ref={textareaRef}
         className={s.InputTextarea}
         value={editInput}
         autoFocus={true}

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { createContext, useContext, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { useLocalStorage } from "../../hooks/useLocalStorage.js";
 import type { Task } from "../../types/index.js";
 
@@ -10,6 +10,7 @@ interface TaskContextType {
   category: "all" | "active" | "completed";
   isAddMode: boolean;
   editTaskId: number | null;
+  handlerId: boolean;
   onAdd: (text: string) => void;
   onDelete: (id: number) => void;
   onSave: (id: number, text: string) => void;
@@ -18,6 +19,7 @@ interface TaskContextType {
   setSearchTask: (text: string) => void;
   setIsAddMode: (value: boolean) => void;
   setEditTaskId: (id: number | null) => void;
+  setHandlerId: (value: boolean) => void;
 }
 
 const TaskContext = createContext<TaskContextType | undefined>(undefined);
@@ -30,6 +32,15 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
   );
   const [isAddMode, setIsAddMode] = useState<boolean>(false);
   const [editTaskId, setEditTaskId] = useState<number | null>(null);
+
+  const [handlerId, setHandlerId] = useState<boolean>(false);
+
+  //for EditMode click outside handler
+  useEffect(() => {
+    if (editTaskId !== null) {
+      setHandlerId(true);
+    }
+  }, [editTaskId, setHandlerId]);
 
   const onAdd = (text: string) => {
     setTasks((prev) => [
@@ -81,6 +92,7 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
     category,
     isAddMode,
     editTaskId,
+    handlerId,
     onAdd,
     onDelete,
     onSave,
@@ -89,6 +101,7 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
     setSearchTask,
     setIsAddMode,
     setEditTaskId,
+    setHandlerId,
   };
 
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;
