@@ -9,6 +9,7 @@ interface TaskContextType {
   searchTask: string;
   category: "all" | "active" | "completed";
   isAddMode: boolean;
+  //   isSearchMode: boolean;
   editTaskId: number | null;
   handlerId: boolean;
   onAdd: (text: string) => void;
@@ -18,6 +19,7 @@ interface TaskContextType {
   setCategory: (cat: "all" | "active" | "completed") => void;
   setSearchTask: (text: string) => void;
   setIsAddMode: (value: boolean) => void;
+  //   setSearchMode: (value: boolean) => void;
   setEditTaskId: (id: number | null) => void;
   setHandlerId: (value: boolean) => void;
 }
@@ -31,6 +33,7 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
     "all",
   );
   const [isAddMode, setIsAddMode] = useState<boolean>(false);
+  //   const [isSearchMode, setSearchMode] = useState<boolean>(false);
   const [editTaskId, setEditTaskId] = useState<number | null>(null);
 
   const [handlerId, setHandlerId] = useState<boolean>(false);
@@ -76,6 +79,7 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
       const matchesSearch = task.name
         .toLowerCase()
         .includes(searchTask.toLowerCase());
+
       if (!matchesSearch) return false;
       if (category === "active") return !task.completed;
       if (category === "completed") return task.completed;
@@ -90,6 +94,7 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
     searchTask,
     category,
     isAddMode,
+    // isSearchMode,
     editTaskId,
     handlerId,
     onAdd,
@@ -99,6 +104,7 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
     setCategory,
     setSearchTask,
     setIsAddMode,
+    // setSearchMode,
     setEditTaskId,
     setHandlerId,
   };
