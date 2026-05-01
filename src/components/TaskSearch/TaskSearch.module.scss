@@ -1,26 +1,48 @@
 @use "../../styles/variabless" as v;
 @use "../../styles/mixins" as m;
 
-.listContainer {
+.SearchContainer {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 10px;
-  margin-top: 15px;
-  margin-bottom: 100px;
+  justify-content: left;
+  margin-top: 1px;
+  margin-bottom: 10px;
 
-  width: 100%;
-  max-width: 700px;
+  .InputTextarea {
+    flex: 1;
+    min-width: 280px;
+    width: 100%;
+    max-width: 700px;
 
-  .SearchButton {
+    resize: none;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    margin-left: 0;
+    background: v.$global-buttcolor;
+    padding: 10px 10px;
+    line-height: 1.5;
+
+    border-radius: v.$main-radius;
+    color: v.$global-textcolor;
+
+    &::placeholder {
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.685);
+      opacity: 1;
+    }
+  }
+
+  button {
     flex: 1;
     min-width: 80px;
+
     @include m.tablet {
       flex: 0 0 auto;
     }
 
-    margin-top: 0px;
-    margin-bottom: 10px;
-    padding: 15px 15px;
+    padding: 12px 15px;
     border: none;
     background-color: v.$global-buttcolor;
     border-radius: v.$main-radius;

@@ -10,7 +10,7 @@ interface EditModeProps {
   onClose: () => void;
 }
 export function EditMode({ task, onClose }: EditModeProps) {
-  const { onSave, setEditTaskId, editTaskId } = useTasks();
+  const { onSave, setEditTaskId, editTaskId, ruleShowButton } = useTasks();
   const [editInput, setEditInput] = useState(task.name);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 

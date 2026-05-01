@@ -5,12 +5,29 @@ import { TaskSearch } from "../TaskSearch/TaskSearch.js";
 import s from "./TaskList.module.scss";
 
 export function TaskList() {
-  const { filteredTasks, setSearchTask } = useTasks();
+  const {
+    filteredTasks,
+    setSearchTask,
+    isSearchMode,
+    setIsSearchMode,
+    isAddMode,
+    handlerId,
+    ruleShowButton,
+  } = useTasks();
   const safeTasks = Array.isArray(filteredTasks) ? filteredTasks : [];
 
   return (
     <div className={s.listContainer}>
-      <TaskSearch onSearch={(text) => setSearchTask(text)} />
+      {isSearchMode ? (
+        <TaskSearch onSearch={(text) => setSearchTask(text)} />
+      ) : ruleShowButton ? (
+        <button
+          className={s.SearchButton}
+          onClick={() => setIsSearchMode(!isSearchMode)}
+        >
+          Click for task search
+        </button>
+      ) : null}
       {safeTasks.filter(Boolean).map((t: Task) => (
         <TaskItem key={t.id} task={t} />
       ))}

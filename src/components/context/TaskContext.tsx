@@ -9,9 +9,10 @@ interface TaskContextType {
   searchTask: string;
   category: "all" | "active" | "completed";
   isAddMode: boolean;
-  //   isSearchMode: boolean;
+  isSearchMode: boolean;
   editTaskId: number | null;
   handlerId: boolean;
+  ruleShowButton: boolean;
   onAdd: (text: string) => void;
   onDelete: (id: number) => void;
   onSave: (id: number, text: string) => void;
@@ -19,7 +20,7 @@ interface TaskContextType {
   setCategory: (cat: "all" | "active" | "completed") => void;
   setSearchTask: (text: string) => void;
   setIsAddMode: (value: boolean) => void;
-  //   setSearchMode: (value: boolean) => void;
+  setIsSearchMode: (value: boolean) => void;
   setEditTaskId: (id: number | null) => void;
   setHandlerId: (value: boolean) => void;
 }
@@ -33,15 +34,19 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
     "all",
   );
   const [isAddMode, setIsAddMode] = useState<boolean>(false);
-  //   const [isSearchMode, setSearchMode] = useState<boolean>(false);
+  const [isSearchMode, setIsSearchMode] = useState<boolean>(false);
   const [editTaskId, setEditTaskId] = useState<number | null>(null);
 
   const [handlerId, setHandlerId] = useState<boolean>(false);
+  const ruleShowButton = !isAddMode && !isSearchMode && !handlerId;
 
   //for EditMode click outside handler
   useEffect(() => {
     if (editTaskId !== null) {
       setHandlerId(true);
+    }
+    if (editTaskId === null) {
+      setHandlerId(false);
     }
   }, [editTaskId]);
 
@@ -94,9 +99,10 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
     searchTask,
     category,
     isAddMode,
-    // isSearchMode,
+    isSearchMode,
     editTaskId,
     handlerId,
+    ruleShowButton,
     onAdd,
     onDelete,
     onSave,
@@ -104,7 +110,7 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
     setCategory,
     setSearchTask,
     setIsAddMode,
-    // setSearchMode,
+    setIsSearchMode,
     setEditTaskId,
     setHandlerId,
   };
